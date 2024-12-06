@@ -50,12 +50,13 @@ dotnet run
   ```bash
 git clone https://github.com/yourusername/expense-tracker.git
 cd expense-tracker/frontend
-
+ ```
 2.Install the required dependencies :
 -Ensure you have Node.js and Angular CLI installed.
 -Run the following command to install frontend dependencies:
   ```bash
 npm install
+ ```
 
 
 
