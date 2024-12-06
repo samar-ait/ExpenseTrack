@@ -16,12 +16,21 @@ builder.Services.AddScoped<IBudgetRepository, BudgetRepository>(); // Example fo
 
 // Add controllers
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:4200") // Replace with your frontend's URL
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
 
 // Optional: Add Swagger for API documentation (for development)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseCors("AllowSpecificOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -54,6 +54,23 @@ public class BudgetRepository : IBudgetRepository
         await _context.SaveChangesAsync();
         return true;
     }
+    public async Task<Budget> UpdateRemainingAsync(int id, decimal expenseAmount)
+{
+    var budget = await _context.Budgets.FindAsync(id);
+    if (budget == null)
+    {
+        return null;
+    }
+    // Update the CurrentSpent field of the budget
+    budget.CurrentSpent += expenseAmount;
+
+    _context.Budgets.Update(budget);
+    await _context.SaveChangesAsync();
+
+    return budget;
+}
+
+
 
     
 }

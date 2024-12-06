@@ -1,0 +1,12 @@
+.chart-container {
+  width: 400px; /* Set desired width */
+  height: 400px; /* Set desired height */
+  margin: 0 auto; /* Center the chart horizontally */
+  position: relative; /* Required for proper scaling */
+}
+
+canvas {
+  display: block; /* Prevent extra space below canvas */
+  width: 100%; /* Match container's width */
+  height: 100%; /* Match container's height */
+}

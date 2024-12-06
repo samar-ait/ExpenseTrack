@@ -1,6 +1,11 @@
 using ExpenseTrackAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
+public class UpdateBudgetRequest
+{
+    public decimal ExpenseAmount { get; set; }
+}
+
 [Route("api/budget")]
 [ApiController]
 public class BudgetController : ControllerBase
@@ -42,11 +47,23 @@ public class BudgetController : ControllerBase
     }
     
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateBudget(Budget budget)
+   // PUT api/budget/2
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateBudget(int id, [FromBody] Budget budget)
     {
-        await _budgetRepository.UpdateBudgetAsync(budget);
-        return NoContent();
+        if (id != budget.Id)
+        {
+            return BadRequest("ID mismatch");
+        }
+
+        var updatedBudget = await _budgetRepository.UpdateBudgetAsync(budget);
+
+        if (updatedBudget == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(updatedBudget);
     }
 
       [HttpDelete("{id}")]
@@ -55,4 +72,37 @@ public class BudgetController : ControllerBase
         var deleted = await _budgetRepository.DeleteBudgetAsync(id);
         return deleted ? NoContent() : NotFound();
     }
+
+    [HttpPut("{id}/updateRemaining")]
+public async Task<IActionResult> UpdateRemaining(int id, [FromBody] decimal expenseAmount)
+{
+    var budget = await _budgetRepository.GetBudgetByIdAsync(id);
+    if (budget == null)
+    {
+        return NotFound();
+    }
+
+    // Add the expense amount to the current spent amount
+    budget.CurrentSpent += expenseAmount;
+
+    // Check if the total spent exceeds the monthly budget limit
+    if (budget.CurrentSpent > budget.MonthlyLimit)
+    {
+        return BadRequest("The total expenses have exceeded the monthly budget.");
+    }
+
+    // Save the updated budget
+    var updatedBudget = await _budgetRepository.UpdateBudgetAsync(budget);
+    if (updatedBudget == null)
+    {
+        return NotFound();
+    }
+
+    return Ok(updatedBudget);
+}
+
+
+
+
+    
 }
