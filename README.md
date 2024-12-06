@@ -35,6 +35,7 @@ This is a web application built to track user expenses and provide alerts when t
    "ConnectionStrings": {
   "DefaultConnection": "Server=localhost;Database=ExpenseTrackerDb;User Id=myusername;Password=mypassword;"
 }
+ ```
 4.Run the API:
 This will start the API locally at http://localhost:5000 (or another port, depending on your configuration).
 ```bash
