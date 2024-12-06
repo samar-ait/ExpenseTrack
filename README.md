@@ -20,8 +20,42 @@ This is a web application built to track user expenses and provide alerts when t
 
 ### Setup Instructions
 
-#### Backend Setup (API with .NET)
+#### Backend Setup (API with .NET 8)
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/expense-tracker.git
    cd expense-tracker/backend
+2. Install the required dependencies:
+   Make sure you have .NET 8 SDK installed. If not, you can download it from the official .NET website.
+   Run the following command to restore the backend dependencies:
+    ```bash
+    dotnet restore
+3.Configure the Database Connection:
+   ```bash
+   "ConnectionStrings": {
+  "DefaultConnection": "Server=localhost;Database=ExpenseTrackerDb;User Id=myusername;Password=mypassword;"
+}
+4.Run the API:
+This will start the API locally at http://localhost:5000 (or another port, depending on your configuration).
+```bash
+dotnet run
+5. Check API Endpoints: You can use Postman or another API testing tool to test the endpoints. Below are some of the main API routes:
+- **GET /api/expenses**: Get all expenses
+- **POST /api/expenses**: Add a new expense
+- **DELETE /api/expenses/{id}**: – Delete an expense
+
+#### Frontend Setup (Angular 18)
+1.Clone the repository:
+  ```bash
+git clone https://github.com/yourusername/expense-tracker.git
+cd expense-tracker/frontend
+
+2.Install the required dependencies :
+-Ensure you have Node.js and Angular CLI installed.
+-Run the following command to install frontend dependencies:
+  ```bash
+npm install
+
+
+
+
