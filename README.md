@@ -57,6 +57,13 @@ cd expense-tracker/frontend
   ```bash
 npm install
  ```
+#### Technologies
+![Angular](https://img.shields.io/badge/Angular-18-red?style=for-the-badge&logo=angular&logoColor=white)
+![ASP.NET](https://img.shields.io/badge/ASP.NET-8-blue?style=for-the-badge&logo=.net&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue?style=for-the-badge&logo=typescript&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-2019-red?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
+
+
 
 
 
